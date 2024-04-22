@@ -1,0 +1,76 @@
+﻿@model List<Hethongnongsan.Models.Forum>
+@{
+    ViewBag.Title = "addForum";
+    Layout = "~/Views/Shared/Headerpage.cshtml";
+    ViewBag.idnguoidung = Request.Cookies["nguoidung"]?.Value.Replace("=", "");
+}
+<div style="margin-top:200px;text-align:center;">
+    @if (ViewBag.idnguoidung == "1")
+    {
+        <h2>Nhập nội dung bài đăng</h2>
+        <form action="/Forum/addForum/" method="post" enctype="multipart/form-data">
+            <label for="context">Nội dung:</label><br>
+            <textarea id="context" style="border-radius:20px" name="context" rows="4" cols="50"></textarea><br><br>
+            <input type="file" name="imageFile" style="width:100%; margin-left:550px; text-align:center;" />
+            <input type="submit" style="border-radius:20px; padding:10px; margin-top:10px" value="Đăng bài">
+        </form>
+    }
+    else
+    {
+        <h1> Diễn đàng</h1>
+    }
+    @{ foreach (var Item in Model)
+        {
+            if (ViewBag.idnguoidung == "1")
+            {
+                <div style="margin-bottom:10px">
+                    <div>
+                        <div>
+
+                        </div>
+                    </div>
+                    <div style="border:1px solid #000000; margin-top:20px;margin-left:100px; width:1300px;border-radius:10px;background-color:white;">
+                        <div style="margin-left: 10px; margin-top: 10px; color: black;font-weight:900">
+                            <div style="text-align:left">
+                                <div>Admin đã đăng vào lúc @Item.Ngaydang</div>
+
+                            </div>
+                            <div style="padding-top: 20px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; text-align: left; color: black; font-weight: 900; border-bottom:1px solid #000000 ">
+                                @Item.Context
+                            </div>
+                            <img style="width:500px;padding:10px" src="~/imgforum/@Item.Img" />
+                            <div>
+                                <a href="https://localhost:44345/Forum/editForum/@Item.Iddiendang" style="border:1px solid #000000;background-color:#808080;color:aliceblue;border-radius:10px">Chỉnh sửa</a>
+                                <a href="https://localhost:44345/Forum/deleteForum/@Item.Iddiendang">Xóa bài đăng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div style="margin-bottom:10px">
+                    <div>
+                        <div>
+
+                        </div>
+                    </div>
+                    <div style="border:1px solid #000000; margin-top:20px;margin-left:100px; width:1300px;border-radius:10px;background-color:white;">
+                        <div style="margin-left: 10px; margin-top: 10px; color: black;font-weight:900">
+                            <div style="text-align:left">
+                                <div>Admin đã đăng vào lúc @Item.Ngaydang</div>
+
+                            </div>
+                            <div style="padding-top: 20px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; text-align: left; color: black; font-weight: 900; border-bottom:1px solid #000000 ">
+                                @Item.Context
+                            </div>
+                            <img style="width:500px;padding:10px" src="~/imgforum/@Item.Img" />
+                            
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>
+
