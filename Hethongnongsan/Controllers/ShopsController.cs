@@ -76,7 +76,7 @@ namespace Hethongnongsan.Controllers
         [HttpPost]
         public ActionResult Edit(Shop shop)
         {
-            ;
+            
             Shop editshop = db.Shop.Where(row => row.Idshop == shop.Idshop).FirstOrDefault();
 
             //edit
@@ -90,7 +90,7 @@ namespace Hethongnongsan.Controllers
             editshop.Email = shop.Email;
             editshop.Facebook = shop.Facebook;
             db.SaveChanges();
-            return RedirectToAction("Index", new { id = shop.Idshop });
+            return RedirectToAction("Index", new { id = shop.Idchusohuu });
         }
 
     }

@@ -112,24 +112,13 @@
             <!-- Divider -->
             <hr class="my-3">
             <!-- Heading -->
-            <h6 class="navbar-heading text-muted">Documentation</h6>
-            <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-                        <i class="ni ni-spaceship"></i> Getting started
+                    <a class="nav-link" href="/Admin/allshop">
+                        <i class="ni ni-spaceship"></i> Tất cả các shop
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-                        <i class="ni ni-palette"></i> Foundation
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-                        <i class="ni ni-ui-04"></i> Components
-                    </a>
-                </li>
+
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item active active-pro">
@@ -146,25 +135,15 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid">
             <!-- Brand -->
-            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Người dùng</a>
+            <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">Shops</a>
             <!-- Form -->
-            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                <div class="form-group mb-0">
-                    <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        </div>
-                        <input class="form-control" placeholder="Search" type="text">
-                    </div>
-                </div>
-            </form>
+           
             <!-- User -->
-            <ul class="navbar-nav align-items-center d-none d-md-flex">
+            <!--<ul class="navbar-nav align-items-center d-none d-md-flex">
                 <li class="nav-item dropdown">
-                    <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="media align-items-center">
+                                           <div class="media align-items-center">
                             <span class="avatar avatar-sm rounded-circle">
-                                <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
+
                             </span>
                             <div class="media-body ml-2 d-none d-lg-block">
                                 <span class="mb-0 text-sm  font-weight-bold">Admin</span>
@@ -173,7 +152,7 @@
                     </a>
 
                 </li>
-            </ul>
+            </ul>-->
         </div>
     </nav>
     <!-- End Navbar -->
@@ -189,13 +168,19 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Tổng người sử dụng</h5>
-                                        <span class="h2 font-weight-bold mb-0">@ViewBag.nguoidung</span>
+                                        @{
+                                            if (@ViewBag.nguoidung != null)
+                                            {
+                                                <span class="h2 font-weight-bold mb-0">@ViewBag.nguoidung</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="h2 font-weight-bold mb-0">0</span>
+                                            }
+                                        }
+
                                     </div>
-                                    <div class="col-auto">
-                                        <a class="icon icon-shape bg-danger text-white rounded-circle shadow" href="https://www.w3schools.com">
-                                            <i class="fas fa-chart-bar"></i>
-                                        </a>
-                                    </div>
+                                    
                                 </div>
 
                             </div>
@@ -207,13 +192,19 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Tổng doanh thu 1 năm</h5>
-                                        <span class="h2 font-weight-bold mb-0">@ViewBag.tongdoanhthu.000 VND</span>
+                                        @{
+                                            if (@ViewBag.tongdoanhthu != null)
+                                            {
+                                                <span class="h2 font-weight-bold mb-0">@ViewBag.tongdoanhthu.000 VND</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="h2 font-weight-bold mb-0">0</span>
+                                            }
+                                        }
+
                                     </div>
-                                    <div class="col-auto">
-                                        <a class="icon icon-shape bg-warning text-white rounded-circle shadow" href="https://www.w3schools.com">
-                                            <i class="fas fa-chart-pie"></i>
-                                        </a>
-                                    </div>
+                                    
                                 </div>
 
                             </div>
@@ -225,13 +216,19 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Shop bán nhiều nhất</h5>
-                                        <span class="h2 font-weight-bold mb-0">@ViewBag.idshoptop.Tenshop</span>
+                                        @{
+                                            if (@ViewBag.idshoptop.Tenshop != null)
+                                            {
+                                                <span class="h2 font-weight-bold mb-0">@ViewBag.idshoptop.Tenshop</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="h2 font-weight-bold mb-0">0</span>
+                                            }
+                                        }
+
                                     </div>
-                                    <div class="col-auto">
-                                        <a class="icon icon-shape bg-yellow text-white rounded-circle shadow" href="https://www.w3schools.com">
-                                            <i class="fas fa-users"></i>
-                                        </a>
-                                    </div>
+                                    
                                 </div>
 
                             </div>
@@ -243,13 +240,19 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Sản phẩm bán chạy nhất</h5>
-                                        <span class="h2 font-weight-bold mb-0"> @ViewBag.idsanphamtop.Tensanpham</span>
+                                        @{
+                                            if (@ViewBag.idsanphamtop.Tensanpham != null)
+                                            {
+                                                <span class="h2 font-weight-bold mb-0"> @ViewBag.idsanphamtop.Tensanpham</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="h2 font-weight-bold mb-0">0</span>
+                                            }
+                                        }
+
                                     </div>
-                                    <div class="col-auto">
-                                        <a class="icon icon-shape bg-info text-white rounded-circle shadow" href="https://www.w3schools.com">
-                                            <i class="fas fa-percent"></i>
-                                        </a>
-                                    </div>
+                                   
                                 </div>
 
                             </div>
@@ -261,7 +264,7 @@
     </div>
     <div class="container-fluid mt--7">
         <div class="row">
-            <div class="" style="margin-left:250px">
+            <div class="" style="width:100%">
 
 
                 <div style="margin-top: 200px;margin-bottom:100px; background-color:white; padding: 20px;">

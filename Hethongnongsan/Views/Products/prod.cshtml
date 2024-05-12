@@ -2,39 +2,118 @@
 @{
     ViewBag.Title = "prod";
     Layout = "~/Views/Shared/Headerpage.cshtml";
-    ViewBag.idnguoidung = Request.Cookies["nguoidung"]?.Value.Replace("=", ""); ;
+    ViewBag.idnguoidung = Request.Cookies["nguoidung"]?.Value.Replace("=", "");
 
 }
-
-<section class="features" id="features" style="height: 600px; margin-top:200px;margin-left:250px">
-    <div class="box-container">
-        <div class="box" style="margin-top: 80px; height: 200px; width: 400px;">
-            <img src="~/img/@ViewBag.linkanh" alt="Product Image">
-            <h3>@ViewBag.Tensp</h3>
-            <p>@ViewBag.tl</p>
-
-        </div>
-        <div>
-            <p style="z-index: 999; font-size: 35px; margin-top: 100px;">predict</p>
-            <p style="margin:10px">@ViewBag.Gt</p>
-            <p  style="margin:10px">Price : @ViewBag.pri</p>
-
-            <form action="/Products/Add">
-                <input type="hidden" name="idnguoidung" value=@ViewBag.idnguoidung>
-                <input type="hidden" name="idsanpham" value="@ViewBag.id">
-                <input type="hidden" name="idshop" value="@ViewBag.idshop">
-                <label for="quantity">Số lượng:</label>
-                <input type="number" name="soluong" min="1" value="1">
-                <button type="submit">Add Cart</button>
-            </form>
-        </div>
-
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
     </div>
-    <div style="margin-top: 50px;">
-        <p>contact</p>
-        <p>....</p>
+</div>
+<!--PreLoader Ends-->
+<!-- header -->
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="~/App_Start/assets/img/logo.png" alt="">
+                        </a>
+                    </div>
+                    <!-- logo -->
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li >
+                                <a href="/Home/Index">Home</a>
+                            </li>
+
+                            @{ if (@ViewBag.idnguoidung != null)
+                                {
+                                    <li class="current-list-item"><a href="/Products/Detail/@ViewBag.idnguoidung">Giỏ hàng</a></li>
+                                    <li> <a href="/Shops/Index/@ViewBag.idnguoidung">Cửa hàng của bạn</a></li>
+                                    <li> <a href="/Profilesuser/Index/@ViewBag.idnguoidung">Hồ sơ</a></li>
+
+
+                                    <li><a href="/Forum/addForum">blogs</a></li>
+                                    <li><a href="/ManagementShop/Index/@ViewBag.idnguoidung">Quản lý kho</a></li>
+                                    if (@ViewBag.idnguoidung == "1")
+                                    {
+                                        <li><a href="/Admin/Index">ADMIN</a></li>
+                                    }
+                                  
+                                    <li><a href="/Login/out">log out</a></li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <div class="fas fa-user" id="login-btn"><a href="/Login/Index" style="text-decoration: none;">Đăng nhập</a></div>
+                                    </li>
+
+                                }
+                            }
+
+
+
+
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+</div>
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Sản Phẩm</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- single product -->
+<div class="single-product mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-product-img">
+                    <img src="~/img/@ViewBag.linkanh" alt="Product Image">
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-content">
+                    <h3>@ViewBag.Tensp</h3>
+                    <p class="single-product-pricing"><span>Per Kg</span>@ViewBag.pri</p>
+                    <p>@ViewBag.Gt</p>
+                    <div class="single-product-form">
+                        <form action="/Products/Add">
+                            <input type="hidden" name="idnguoidung" value=@ViewBag.idnguoidung>
+                            <input type="hidden" name="idsanpham" value="@ViewBag.id">
+                            <input type="hidden" name="idshop" value="@ViewBag.idshop">
+                            <label for="quantity">Số lượng:</label>
+                            <input type="number" name="soluong" min="1" value="1">
+                            <button><i class="fas fa-shopping-cart"></i> Add to Cart</a></button>
+                        </form>
+                        <p><strong>Categories: </strong>@ViewBag.tl</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end single product -->
 @*
     <div class="card">
         <div class="left">
@@ -75,35 +154,35 @@
             </div>
     </div>*@
 @*<div class="card" style="position:initial;margin-top:200px; margin-bottom:100px;" >
-    <div class="left" style="margin-left:-300px;">
-        <img src="~/img/@ViewBag.linkanh" alt="shoe" style="width:250px;height:250px; margin-left:50px;margin-top:-30px">
-        <i class="fa fa-long-arrow-left"></i>
-        <i class="fa fa-long-arrow-right"></i>
-    </div>
-    <div class="right">
-        <div class="product-info">
-            <form action="/Products/Add">
-                <input type="hidden" name="idnguoidung" value=@ViewBag.idnguoidung>
-                <input type="hidden" name="idsanpham" value="@ViewBag.id" />
-                <div class="product-name" style="margin-top:60px;">
-                    <h1 style="color:white">@ViewBag.Tensp</h1>
-                    <i class="fa fa-search"></i>
-                    <i class="fa fa-user"></i>
-                    <i class="fa fa-shopping-cart"></i>
-                </div>
-                <div class="details">
-                    <h2 style="color:white">@ViewBag.tl</h2>
-                    <p style="color:white">@ViewBag.Gt</p>
-                    <h4 style="color:white"><span class="fa fa-dollar"></span>@ViewBag.pri</h4>
-                    <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
-                </div>
-                <ul>        
-                </ul>
-                <label for="quantity" style="color:white; margin-top:50px;">Số lượng:</label>
-                <input  type="number" name="soluong" min="1" value="1">
-                <button  style="background-color: #102d4a; " class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</button>
-            </form>
+        <div class="left" style="margin-left:-300px;">
+            <img src="~/img/@ViewBag.linkanh" alt="shoe" style="width:250px;height:250px; margin-left:50px;margin-top:-30px">
+            <i class="fa fa-long-arrow-left"></i>
+            <i class="fa fa-long-arrow-right"></i>
+        </div>
+        <div class="right">
+            <div class="product-info">
+                <form action="/Products/Add">
+                    <input type="hidden" name="idnguoidung" value=@ViewBag.idnguoidung>
+                    <input type="hidden" name="idsanpham" value="@ViewBag.id" />
+                    <div class="product-name" style="margin-top:60px;">
+                        <h1 style="color:white">@ViewBag.Tensp</h1>
+                        <i class="fa fa-search"></i>
+                        <i class="fa fa-user"></i>
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="details">
+                        <h2 style="color:white">@ViewBag.tl</h2>
+                        <p style="color:white">@ViewBag.Gt</p>
+                        <h4 style="color:white"><span class="fa fa-dollar"></span>@ViewBag.pri</h4>
+                        <h4 class="dis"><span class="fa fa-dollar"></span>200</h4>
+                    </div>
+                    <ul>
+                    </ul>
+                    <label for="quantity" style="color:white; margin-top:50px;">Số lượng:</label>
+                    <input  type="number" name="soluong" min="1" value="1">
+                    <button  style="background-color: #102d4a; " class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 *@

@@ -18,22 +18,58 @@
     <link href="~/App_Start/Admin/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
 </head>
 <body>
-    <div>@RenderBody()</div>
-    <!--   Core   -->
-    <script src="~/App_Start/Admin/assets/js/plugins/jquery/dist/jquery.min.js"></script>
-    <script src="~/App_Start/Admin/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!--   Optional JS   -->
-    <script src="~/App_Start/Admin/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
-    <script src="~/App_Start/Admin/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
-    <!--   Argon JS   -->
-    <script src="~/App_Start/Admin/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
-    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-    <script>
-  window.TrackJS &&
-    TrackJS.install({
-      token: "ee6fab19c5a04ac1a32a645abde4613a",
-      application: "argon-dashboard-free"
-    });
-    </script>
-</body>
+        <!--PreLoader-->
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="circle"></div>
+            </div>
+        </div>
+        <!--PreLoader Ends-->
+        <!-- header -->
+        <div class="top-header-area" id="sticker">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 text-center">
+                        <div class="main-menu-wrap">
+                            <!-- logo -->
+                            <div class="site-logo">
+                                <a href="index.html">
+                                    <img src="~/App_Start/assets/img/logo.png" alt="">
+                                </a>
+                            </div>
+                            <!-- logo -->
+                            <!-- menu start -->
+                            <nav class="main-menu">
+                                <ul>
+                                    <li class="current-list-item">
+                                        <a href="/Home/Index">Home</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            <div class="mobile-menu"></div>
+                            <!-- menu end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>@RenderBody()</div>
+        <!--   Core   -->
+        <script src="~/App_Start/Admin/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+        <script src="~/App_Start/Admin/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <!--   Optional JS   -->
+        <script src="~/App_Start/Admin/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
+        <script src="~/App_Start/Admin/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
+        <!--   Argon JS   -->
+        <script src="~/App_Start/Admin/assets/js/argon-dashboard.min.js?v=1.1.2"></script>
+        <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+        <script>
+            window.TrackJS &&
+                TrackJS.install({
+                    token: "ee6fab19c5a04ac1a32a645abde4613a",
+                    application: "argon-dashboard-free"
+                });
+        </script>
+    </body>
 </html>

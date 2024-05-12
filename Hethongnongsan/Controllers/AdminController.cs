@@ -275,5 +275,64 @@ namespace Hethongnongsan.Controllers
             db.SaveChanges(true);
             return RedirectToAction("nguoidung");
         }
+        public ActionResult allshop()
+        {
+            List<Shop> shopcart = db.Shop.ToList();
+
+
+            //Quản lý tài khoản
+            int count = db.Nguoidung.Count();
+
+            //Tổng tiền theo từng năm
+            List<Shopcart> shop = db.Shopcart.ToList();
+            float tongdoanhthu = 0;
+            foreach (var item in shop)
+            {
+                string resultString = item.Ngaymua.ToString().Substring(0, item.Ngaymua.ToString().Length - 12);
+                string lastFourChars = resultString.Substring(resultString.Length - 4);
+                Debug.WriteLine("Quản lý tài khoản: " + lastFourChars);
+                if (lastFourChars == DateTime.Now.Year.ToString())
+                {
+                    tongdoanhthu = tongdoanhthu + (float)item.Tongtien;
+                }
+            }
+
+            //shop nào bán hàng nhiều nhất
+            int shopcarts = 0; int idshoptop = 0; int sps = 0; int idsanphamtop = 0;
+            List<Shop> shops = db.Shop.ToList();
+            foreach (var item in shops)
+            {
+                int tongsoluong = (int)db.Shopcart.Where(row => row.Idshop == item.Idshop).Sum(s => s.Soluong);
+                if (shopcarts < tongsoluong)
+                {
+                    shopcarts = tongsoluong;
+                    idshoptop = item.Idshop;
+                }
+            }
+
+            //sản phẩm được mua nhiều nhất
+            List<Sanpham> sp = db.Sanpham.ToList();
+            foreach (var item in sp)
+            {
+                int tongsoluong = (int)db.Shopcart.Where(row => row.Idsanpham == item.Idsanpham).Sum(s => s.Soluong);
+                if (sps < tongsoluong)
+                {
+                    sps = tongsoluong;
+                    idsanphamtop = item.Idsanpham;
+                }
+            }
+            Debug.WriteLine("Quản lý tài khoản: " + count);
+            Debug.WriteLine("Tổng tiền theo từng năm: " + tongdoanhthu);
+            Debug.WriteLine("shop nào bán hàng nhiều nhất: " + idshoptop);
+            Debug.WriteLine("sản phẩm được mua nhiều nhất: " + idsanphamtop);
+
+            Shop shoptop = db.Shop.Where(row => row.Idshop == idshoptop).FirstOrDefault();
+            Sanpham sptop = db.Sanpham.Where(row => row.Idsanpham == idsanphamtop).FirstOrDefault();
+            ViewBag.nguoidung = count;
+            ViewBag.tongdoanhthu = tongdoanhthu;
+            ViewBag.idshoptop = shoptop;
+            ViewBag.idsanphamtop = sptop;
+            return View(shopcart);
+        }
     }
 }

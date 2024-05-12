@@ -23,7 +23,10 @@ namespace Hethongnongsan.Controllers
         [HttpPost]
         public ActionResult Addpro(Sanpham sp,string nameimg, HttpPostedFileBase imageFile)
         {
+
+
             string url = "";
+            Nguoidung nguoidung = db.Nguoidung.FirstOrDefault(row => row.Idshop == sp.Idshop);
             string fileName = Path.GetFileName(imageFile.FileName);
             string filePath = Path.Combine(Server.MapPath("~/img"), nameimg + sp.Idsanpham+".jpg");
             if (System.IO.File.Exists(filePath))
@@ -53,13 +56,14 @@ namespace Hethongnongsan.Controllers
                 {
                     ViewBag.Message = "Please select an image to upload.";
                 }
-                Nguoidung nguoidung = db.Nguoidung.FirstOrDefault(row => row.Idshop == sp.Idshop);
+                
                 sp.Linkhinhanh = nameimg +sp.Idsanpham+ ".jpg";
                 db.Sanpham.Add(sp);
                 db.SaveChanges();
                 db.SaveChanges();
                 url = "https://localhost:44345/Shops/Index/" + nguoidung.Idnguoidung;
-            }         
+            }
+            url = "https://localhost:44345/Shops/Index/" + nguoidung.Idnguoidung;
             return Redirect(url);
         }
 

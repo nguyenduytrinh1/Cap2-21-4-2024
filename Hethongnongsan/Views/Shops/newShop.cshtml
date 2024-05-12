@@ -1,137 +1,123 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "newShop";
     Layout = "~/Views/Shared/Headerpage.cshtml";
+    ViewBag.idnguoidung = Request.Cookies["nguoidung"]?.Value.Replace("=", "");
 }
-
-<div class="main-banner">
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+<!-- header -->
+<div class="top-header-area" id="sticker">
     <div class="container">
-
         <div class="row">
-
-            <div class="col-lg-6 align-self-center">
-                <div class="caption header-text" style="display:flex">
-                    <div>
-                        <form action="/Shops/newShop/@ViewBag.id" method="post" style="margin-top:100px;margin-left:200px">
-                            <input type="hidden" name="Idshop" />
-                            <input type="hidden" name="Idchusohuu" value="@ViewBag.id" />
-                            <div style="display:flex;">
-                                <div>
-
-                                    <div>
-                                        <label>
-                                            Tên shop
-                                        </label>
-                                        <input type="text" name="Tenshop" />
-                                    </div>
-                                    <div>
-                                        <label>
-                                            Ngày thành lập
-                                        </label>
-                                        <input type="text" name="Ngaythanhlap" />
-                                    </div>
-                                    <div>
-                                        <label>
-                                            Giới thiệu
-                                        </label>
-                                        <input type="text" name="Gioithieu" />
-                                    </div>
-                                    <div>
-                                        <label>
-                                            Logo
-                                        </label>
-                                        <input type="text" name="Logo" />
-                                    </div>
-                                    <div>
-                                        <label>
-                                            Địa chỉ
-                                        </label>
-                                        <input type="text" name="Diachi" />
-                                    </div>
-                                </div>
-                                <div style="margin-left:100px">
-                                    <div>
-                                        <label>
-                                            SỐ điện thoại
-                                        </label>
-                                        <input type="text" name="Sdt" />
-                                    </div>
-                                    <div>
-                                        <label>
-                                            email
-                                        </label>
-                                        <input type="text" name="Email" />
-                                    </div>
-                                    <div>
-                                        <label>
-                                            face
-                                        </label>
-                                        <input type="text" name="Facebook" />
-                                    </div>
-                                    <div>
-                                        <label>
-                                            ins
-                                        </label>
-                                        <input type="text" name="Instagram" />
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" style="margin-top:300px;">Create Shop</button>
-                        </form>
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="~/App_Start/assets/img/logo.png" alt="">
+                        </a>
                     </div>
-                </div>
-                <div class="col-lg-4 offset-lg-2">
-                    <div class="right-image">
+                    <!-- logo -->
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li>
+                                <a href="/Home/Index">Home</a>
+                            </li>
 
-                    </div>
+                            @{ if (@ViewBag.idnguoidung != null)
+                                {
+                                    <li><a href="/Products/Detail/@ViewBag.idnguoidung">Giỏ hàng</a></li>
+                                    <li class="current-list-item"> <a href="/Shops/Index/@ViewBag.idnguoidung">Cửa hàng của bạn</a></li>
+                                    <li> <a href="/Profilesuser/Index/@ViewBag.idnguoidung">Hồ sơ</a></li>
+
+
+                                    <li><a href="/Forum/addForum">blogs</a></li>
+                                    <li><a href="/ManagementShop/Index/@ViewBag.idnguoidung">Quản lý kho</a></li>
+                                    if (@ViewBag.idnguoidung == "1")
+                                    {
+                                        <li><a href="/Admin/Index">ADMIN</a></li>
+                                    }
+
+                                    <li><a href="/Login/out">log out</a></li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <div class="fas fa-user" id="login-btn"><a href="/Login/Index" style="text-decoration: none;">Đăng nhập</a></div>
+                                    </li>
+
+                                }
+                            }
+
+
+
+
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="section trending">
+<div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
-        <ul class="trending-filter">
-            <li>
-
-            </li>
-
-            <li>
-
-            </li>
-
-
-        </ul>
-
-        <div class="row trending-box">
-
-
-            <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6">
-                <div class="item">
-                    <div class="thumb">
-
-
-                    </div>
-                    <div class="down-content">
-
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
         <div class="row">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li><a href="#"> &lt; </a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a class="is_active" href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#"> &gt; </a></li>
-                </ul>
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Get 24/7 Support</p>
+                    <h1>Tạo Shop</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="form-title">
+                    @* <h2>Have you any question?</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+                    *@
+                </div>
+                <div id="form_status"></div>
+                <div class="contact-form">
+                    <form action="/Shops/newShop" method="post" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+                        <input type="hidden" name="Idshop" />
+                        <input type="hidden" name="Idchusohuu"  style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" required />
+
+                        <p>
+                            <input type="text" placeholder="Tên shop" name="Tenshop" id="name">
+                            <input type="date" placeholder="Ngày thành lập" name="Ngaythanhlap" id="email">
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Giới thiệu" name="Gioithieu" id="phone">
+                            <input type="text" placeholder="Địa chỉ" name="Diachi" id="subject">
+                        </p>
+                        <p>
+                            <input type="tel" placeholder="Phone" name="Sdt" id="phone">
+                            <input type="email" placeholder="Email" name="Email" id="subject">
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Facebook" name="Facebook" id="phone">
+                            <input type="text" placeholder="Subject" name="Instagram" id="subject">
+                        </p>
+
+                        <p><input type="submit" value="Submit"></p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 

@@ -2,7 +2,17 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Headerpage.cshtml";
+    ViewBag.idnguoidung = Request.Cookies["nguoidung"]?.Value.Replace("=", "");
 }
-
-<h2>Index</h2>
-
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Get 24/7 Support</p>
+                    <h1>Thêm Sản Phẩm Phẩm</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

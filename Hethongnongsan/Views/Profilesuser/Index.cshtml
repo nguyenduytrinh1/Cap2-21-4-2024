@@ -4,7 +4,85 @@
     Layout = "~/Views/Shared/Headerpage.cshtml";
     ViewBag.idnguoidung = Request.Cookies["nguoidung"]?.Value.Replace("=", "");
 }
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+<!-- header -->
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="~/App_Start/assets/img/logo.png" alt="">
+                        </a>
+                    </div>
+                    <!-- logo -->
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li >
+                                <a href="/Home/Index">Home</a>
+                            </li>
 
+                            @{ if (@ViewBag.idnguoidung != null)
+                                {
+                                    <li><a href="/Products/Detail/@ViewBag.idnguoidung">Giỏ hàng</a></li>
+                                    <li> <a href="/Shops/Index/@ViewBag.idnguoidung">Cửa hàng của bạn</a></li>
+                                    <li class="current-list-item"> <a href="/Profilesuser/Index/@ViewBag.idnguoidung">Hồ sơ</a></li>
+
+
+                                    <li><a href="/Forum/addForum">blogs</a></li>
+                                    <li><a href="/ManagementShop/Index/@ViewBag.idnguoidung">Quản lý kho</a></li>
+                                    if (@ViewBag.idnguoidung == "1")
+                                    {
+                                        <li><a href="/Admin/Index">ADMIN</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="/ManagementShop/Index/@ViewBag.idnguoidung">Quản lý kho</a></li>
+                                    }
+                                    <li><a href="/Login/out">log out</a></li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <div class="fas fa-user" id="login-btn"><a href="/Login/Index" style="text-decoration: none;">Đăng nhập</a></div>
+                                    </li>
+
+                                }
+                            }
+
+
+
+
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Get 24/7 Support</p>
+                    <h1>Hồ sơ</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <section id="content" class="container">
     <!-- Begin .page-heading -->
@@ -16,11 +94,10 @@
                 </a>
             </div>
             <div class="media-body va-m">
-                <h2 class="media-heading">
+                <h2 class="media-heading" style="text-align:center; margin-top:100px">
                     @Model.TaiKhoan
-                    <small> - Hồ sơ</small>
                 </h2>
-               
+
             </div>
         </div>
     </div>
@@ -76,92 +153,35 @@
                                     <span class="fa fa-newspaper-o text-info"></span>
                                 </td>
                                 <td> <a href="/Profilesuser/Updateprofiles/@ViewBag.idnguoidung" style="color: black;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Edit</a></td>
-                               
+
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="panel">
-                <div class="panel-heading">
-                    <span class="panel-icon">
-                        <i class="fa fa-trophy"></i>
-                    </span>
-                    <span class="panel-title"> My Skills</span>
-                </div>
-                <div class="panel-body pb5">
-                    <span class="label label-warning mr5 mb10 ib lh15">Default</span>
-                    <span class="label label-primary mr5 mb10 ib lh15">Primary</span>
-                    <span class="label label-info mr5 mb10 ib lh15">Success</span>
-                    <span class="label label-success mr5 mb10 ib lh15">Info</span>
-                    <span class="label label-alert mr5 mb10 ib lh15">Warning</span>
-                    <span class="label label-system mr5 mb10 ib lh15">Danger</span>
-                    <span class="label label-info mr5 mb10 ib lh15">Success</span>
-                    <span class="label label-success mr5 mb10 ib lh15">Ui Design</span>
-                    <span class="label label-primary mr5 mb10 ib lh15">Primary</span>
 
-                </div>
-            </div>
-            <div class="panel">
-                <div class="panel-heading">
-                    <span class="panel-icon">
-                        <i class="fa fa-pencil"></i>
-                    </span>
-                    <span class="panel-title">About Me</span>
-                </div>
-                <div class="panel-body pb5">
 
-                    <h6>Experience</h6>
-
-                    <h4>Facebook Internship</h4>
-                    <p class="text-muted">
-                        University of Missouri, Columbia
-                        <br> Student Health Center, June 2010 - 2012
-                    </p>
-
-                    <hr class="short br-lighter">
-
-                    <h6>Education</h6>
-
-                    <h4>Bachelor of Science, PhD</h4>
-                    <p class="text-muted">
-                        University of Missouri, Columbia
-                        <br> Student Health Center, June 2010 through Aug 2011
-                    </p>
-
-                    <hr class="short br-lighter">
-
-                    <h6>Accomplishments</h6>
-
-                    <h4>Successful Business</h4>
-                    <p class="text-muted pb10">
-                        University of Missouri, Columbia
-                        <br> Student Health Center, June 2010 through Aug 2011
-                    </p>
-
-                </div>
-            </div>
         </div>
         <div class="col-md-8">
 
             <div class="tab-block">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#tab1" data-toggle="tab" style="font-size:20px;font-weight:800">Sản phẩm được yêu cầu</a>
+                        <div href="#tab1" data-toggle="tab" style="font-size:20px;font-weight:800">Lịch sử mua hàng</div>
                     </li>
-                 
+
                 </ul>
                 <div class="tab-content p30" style="height: 730px;">
                     <div id="tab1" class="tab-pane active">
-                       
-                        
+
+
                         <div class="media mt25">
-                            <div  style="width: 100%; margin-bottom: 100px; background-color: white; padding: 20px;">
+                            <div style="width: 100%; margin-bottom: 100px; background-color: white; padding: 20px;">
                                 <table style="width: 100%; border-collapse: collapse; color:black">
                                     <thead>
                                         <tr>
                                             <th style=" padding: 8px; text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2; align-content: center; justify-content: center">Sản Phấm</th>
-                                            <th style="padding: 8px; text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2; ">Người Mua</th>
+                                            @*<th style="padding: 8px; text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2; ">Người Mua</th>*@
                                             <th style="padding: 8px; text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2; ">Số lượng</th>
                                             <th style="padding: 8px; text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2; ">Tới địa chỉ</th>
                                             <th style="padding: 8px; text-align: center; border-bottom: 1px solid #ddd; background-color: #f2f2f2;">Ngày đặt</th>
@@ -171,37 +191,38 @@
                                         @{
                                             if (ViewBag.SanPhamn != null)
                                             {
-                                                 int i = 0;
+                                                int i = 0;
                                                 foreach (var item in ViewBag.SanPhamn)
                                                 {
                                                     <tr style="width: 100%; border-collapse: collapse; color:black">
                                                         <td style=" padding: 8px; text-align: center; border-bottom: 1px solid #ddd;">
                                                             @ViewBag.SanPhamn[i].Tensanpham
                                                         </td>
-                                                        <td style=" padding: 8px; text-align: center; border-bottom: 1px solid #ddd;">
-                                                            @ViewBag.Nguoimua[i].Tennguoidung
-                                                        </td>
-                                                       
+                                                        @*  <td style=" padding: 8px; text-align: center; border-bottom: 1px solid #ddd;">
+                                                                @ViewBag.Nguoimua[0].Tennguoidung
+                                                            </td>*@
+
                                                         <td style=" padding: 8px; text-align: center; border-bottom: 1px solid #ddd;">
                                                             @ViewBag.Shopcart[i].Soluong
                                                         </td>
-                                                         <td style=" padding: 8px; text-align: center; border-bottom: 1px solid #ddd;">
-                                                         @ViewBag.Shopcart[i].Diemden
+                                                        <td style=" padding: 8px; text-align: center; border-bottom: 1px solid #ddd;">
+                                                            @ViewBag.Shopcart[i].Diemden
                                                         </td>
-                                                         <td style=" padding: 8px; text-align: center; border-bottom: 1px solid #ddd;">
-                                                          @ViewBag.Shopcart[i].Ngaymua
-                                                          </td>
+                                                        <td style=" padding: 8px; text-align: center; border-bottom: 1px solid #ddd;">
+                                                            @ViewBag.Shopcart[i].Ngaymua
+                                                        </td>
                                                     </tr>
-
                                                     i++;
+
                                                 }
                                             }
                                         }
 
+
+
                                     </tbody>
                                 </table>
                             </div>
-                            @*<h4>Tổng Tiền: @ViewBag.SanPhamDaBan.Tongtien </h4> *@
                         </div>
                     </div>
                     <div id="tab2" class="tab-pane"></div>

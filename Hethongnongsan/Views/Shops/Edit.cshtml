@@ -2,56 +2,122 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/Headerpage.cshtml";
+    ViewBag.idnguoidung = Request.Cookies["nguoidung"]?.Value.Replace("=", "");
 }
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+<!-- header -->
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="~/App_Start/assets/img/logo.png" alt="">
+                        </a>
+                    </div>
+                    <!-- logo -->
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li >
+                                <a href="/Home/Index">Home</a>
+                            </li>
 
-<div style="margin-top: 100px;">
-    <form action="/Shops/Edit/@Model.Idshop" method="post" style="margin-top: 100px; display: flex; flex-direction: column; align-items: center; margin-bottom:100px">
+                            @{ if (@ViewBag.idnguoidung != null)
+                                {
+                                    <li><a href="/Products/Detail/@ViewBag.idnguoidung">Giỏ hàng</a></li>
+                                    <li class="current-list-item"> <a href="/Shops/Index/@ViewBag.idnguoidung">Cửa hàng của bạn</a></li>
+                                    <li> <a href="/Profilesuser/Index/@ViewBag.idnguoidung">Hồ sơ</a></li>
 
-        <input type="hidden" name="Idshop" value="@Model.Idshop" />
 
-        <div style="width: 300px;">
-            <div style="margin-bottom: 10px;">
-                <label for="Idchusohuu" style="color: #333;">id chu so huu</label>
-                <input type="text" name="Idchusohuu" value="@Model.Idchusohuu" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label for="Tenshop" style="color: #333;">ten shop</label>
-                <input type="text" name="Tenshop" value="@Model.Tenshop" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label for="Ngaythanhlap" style="color: #333;">ngay thanh lap</label>
-                <input type="text" name="Ngaythanhlap" value="@Model.Ngaythanhlap" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label for="Gioithieu" style="color: #333;">gioi thieu</label>
-                <input type="text" name="Gioithieu" value="@Model.Gioithieu" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label for="Logo" style="color: #333;">lo go</label>
-                <input type="text" name="Logo" value="@Model.Logo" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label for="Diachi" style="color: #333;">dia chi</label>
-                <input type="text" name="Diachi" value="@Model.Diachi" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label for="Sdt" style="color: #333;">sdt</label>
-                <input type="text" name="Sdt" value="@Model.Sdt" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label for="Email" style="color: #333;">email</label>
-                <input type="text" name="Email" value="@Model.Email" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label for="Facebook" style="color: #333;">face</label>
-                <input type="text" name="Facebook" value="@Model.Facebook" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
-            </div>
-            <div style="margin-bottom: 10px;">
-                <label for="Instagram" style="color: #333;">ins</label>
-                <input type="text" name="Instagram" value="@Model.Instagram" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" />
+                                    <li><a href="/Forum/addForum">blogs</a></li>
+                                    <li><a href="/ManagementShop/Index/@ViewBag.idnguoidung">Quản lý kho</a></li>
+                                    if (@ViewBag.idnguoidung == "1")
+                                    {
+                                        <li><a href="/Admin/Index">ADMIN</a></li>
+                                    }
+                                   
+                                    <li><a href="/Login/out">log out</a></li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <div class="fas fa-user" id="login-btn"><a href="/Login/Index" style="text-decoration: none;">Đăng nhập</a></div>
+                                    </li>
+
+                                }
+                            }
+
+
+
+
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Get 24/7 Support</p>
+                    <h1>Sửa Thông Tin Shop</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <button type="submit" style="margin-top: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Lưu sửa đổi</button>
-    </form>
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="form-title">
+                    @*                  <h2>Have you any question?</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+                    *@
+                </div>
+                <div id="form_status"></div>
+                <div class="contact-form">
+                    <form action="/Shops/Edit/@Model.Idshop" method="post" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+                        <input type="hidden" name="Idshop" value="@Model.Idshop" />
+                        <input type="hidden" name="Idchusohuu" value="@Model.Idchusohuu" style="width: 100%; border: 1px solid #ccc; padding: 8px; box-sizing: border-box; border-radius: 4px;" required />
+
+                        <p>
+                            <input type="text" placeholder="Tên shop" value="@Model.Tenshop" name="Tenshop" id="name">
+                            <input type="date" placeholder="Ngày thành lập" value="@Model.Ngaythanhlap" name="Ngaythanhlap" id="email">
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Giới thiệu" value="@Model.Gioithieu" name="Gioithieu" id="phone">
+                            <input type="text" placeholder="Địa chỉ" value="@Model.Diachi" name="Diachi" id="subject">
+                        </p>
+                        <p>
+                            <input type="tel" placeholder="Phone" value="@Model.Sdt" name="Sdt" id="phone">
+                            <input type="email" placeholder="Email" value="@Model.Email" name="Email" id="subject">
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Facebook" value="@Model.Facebook" name="Facebook" id="phone">
+                            <input type="text" placeholder="Subject" value="@Model.Instagram" name="Instagram" id="subject">
+                        </p>
+
+                        <p><input type="submit" value="Submit"></p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

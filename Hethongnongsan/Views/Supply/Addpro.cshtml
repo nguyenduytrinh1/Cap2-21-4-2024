@@ -1,35 +1,143 @@
-﻿@Model Hethongnongsan.Models.Nguoidung
+﻿@model Hethongnongsan.Models.Nguoidung
 @{
     ViewBag.Title = "Addpro";
     Layout = "~/Views/Shared/Headerpage.cshtml";
+    ViewBag.idnguoidung = Request.Cookies["nguoidung"]?.Value.Replace("=", "");
 }
-<div style="margin-top: 100px; display: flex; justify-content: center; margin-bottom:100px">
-    <form action="/Supply/Addpro/@ViewBag.id" method="post" style="width: 400px; padding: 20px; border: 1px solid #ccc; border-radius: 8px;" enctype="multipart/form-data">
-        <input type="hidden" name="Idshop" value="@Model.Idshop" />
-        <div style="margin-bottom: 10px;">
-            <label for="Tensanpham">Tên sản phẩm</label>
-            <input type="text" name="Tensanpham" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" />
+@*<div style="margin-top: 100px; display: flex; justify-content: center; margin-bottom:100px">
+        <form action="/Supply/Addpro/@ViewBag.id" method="post" style="width: 400px; padding: 20px; border: 1px solid #ccc; border-radius: 8px;" enctype="multipart/form-data">
+            <input type="hidden" name="Idshop" value="@Model.Idshop" />
+            <div style="margin-bottom: 10px;">
+                <label for="Tensanpham">Tên sản phẩm</label>
+                <input type="text" name="Tensanpham" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" required />
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="Tenloai">Tên loại</label>
+                <input type="text" name="Tenloai" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" required />
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="Gioithieu">Giới thiệu</label>
+                <input type="text" name="Gioithieu" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" required />
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="Gia">Giá</label>
+                <input type="number" name="Gia" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" required />
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="imageFile">Link ảnh</label>
+                <input type="file" name="imageFile" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" required />
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="nameimg">Link ảnh</label>
+                <input type="text" name="nameimg" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" required />
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Thêm</button>
+        </form>
+    </div>*@
+<!-- header -->
+<div class="top-header-area" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="~/App_Start/assets/img/logo.png" alt="">
+                        </a>
+                    </div>
+                    <!-- logo -->
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li>
+                                <a href="/Home/Index">Home</a>
+                            </li>
+
+                            @{ if (@ViewBag.idnguoidung != null)
+                                {
+                                    <li><a href="/Products/Detail/@ViewBag.idnguoidung">Giỏ hàng</a></li>
+                                    <li class="current-list-item"> <a href="/Shops/Index/@ViewBag.idnguoidung">Cửa hàng của bạn</a></li>
+                                    <li> <a href="/Profilesuser/Index/@ViewBag.idnguoidung">Hồ sơ</a></li>
+
+
+                                    <li><a href="/Forum/addForum">blogs</a></li>
+                                    <li><a href="/ManagementShop/Index/@ViewBag.idnguoidung">Quản lý kho</a></li>
+                                    if (@ViewBag.idnguoidung == "1")
+                                    {
+                                        <li><a href="/Admin/Index">ADMIN</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="/ManagementShop/Index/@ViewBag.idnguoidung">Quản lý kho</a></li>
+                                    }
+                                    <li><a href="/Login/out">log out</a></li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <div class="fas fa-user" id="login-btn"><a href="/Login/Index" style="text-decoration: none;">Đăng nhập</a></div>
+                                    </li>
+
+                                }
+                            }
+
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+                    <!-- menu end -->
+                </div>
+            </div>
         </div>
-        <div style="margin-bottom: 10px;">
-            <label for="Tenloai">Tên loại</label>
-            <input type="text" name="Tenloai" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" />
+    </div>
+</div>
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Get 24/7 Support</p>
+                    <h1>Thêm Sản Phẩm Phẩm</h1>
+                </div>
+            </div>
         </div>
-        <div style="margin-bottom: 10px;">
-            <label for="Gioithieu">Giới thiệu</label>
-            <input type="text" name="Gioithieu" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" />
+    </div>
+</div>
+
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="form-title">
+                    @*                    <h2>Have you any question?</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+                    *@
+                </div>
+                <div id="form_status"></div>
+                <div class="contact-form">
+                    <form action="/Supply/Addpro/@ViewBag.id" method="post" enctype="multipart/form-data" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+                        <input type="hidden" name="Idshop" value="@Model.Idshop" />
+                        <p>
+                            <input type="text" placeholder="Tên sản phẩm" name="Tensanpham" id="name" required>
+                            <input type="text" placeholder="Tên Loại" name="Tenloai" id="email" required>
+                        </p>
+                        <p>
+                            <input type="text" placeholder="Giới thiệu" name="Gioithieu" id="phone" required>
+                            <input type="number" placeholder="Gía" name="Gia" id="subject" required>
+                        </p>
+                        <p>
+
+                            <input type="tel" placeholder="Tên ảnh" name="nameimg" id="phone" required>
+                            <input placeholder="Email" type="file" name="imageFile" id="subject" class="check-img" onchange="checks()" required>
+                            <div id="preview"></div>
+                        </p>
+
+                        <p><input style="display:none" type="submit" value="Submit"></p>
+                    </form>
+
+                </div>
+            </div>
         </div>
-        <div style="margin-bottom: 10px;">
-            <label for="Gia">Giá</label>
-            <input type="text" name="Gia" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" />
-        </div>
-        <div style="margin-bottom: 10px;">
-            <label for="imageFile">Link ảnh</label>
-            <input type="file" name="imageFile" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" />
-        </div>
-        <div style="margin-bottom: 10px;">
-            <label for="nameimg">Link ảnh</label>
-            <input type="text" name="nameimg" class="form-control" style="width: 100%; padding: 8px; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc;" />
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Thêm</button>
-    </form>
+    </div>
 </div>
